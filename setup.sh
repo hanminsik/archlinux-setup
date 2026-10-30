@@ -53,10 +53,10 @@ sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
   sudo sed -i '1s/$/ rw quiet mitigations=off/' /etc/kernel/cmdline
 
-# dotfiles 설정 (config 준비 후 주석 해제)
-# chezmoi init --apply hanminsik
+# chezmoi로 dotfiles 설정
+chezmoi init --apply https://github.com/hanminsik/dotfiles.git
 
-# 7. 재부팅
+# 재부팅
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
   sudo systemctl reboot
