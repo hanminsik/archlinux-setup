@@ -32,9 +32,9 @@ yay -Sc --noconfirm
 rm -rf "${XDG_CACHE_HOME:-$HOME/.cache}/yay"
 
 # xdg-user-dirs: 디렉터리 이름을 영어로 고정
-LC_ALL=C.UTF-8 xdg-user-dirs-update --force
-rm -rf ~/.local/share/user-places.xbel
-rm -rf ~/바탕화면 ~/문서 ~/다운로드 ~/음악 ~/사진 ~/비디오 ~/공개 ~/템플릿 ~/프로젝트
+# LC_ALL=C.UTF-8 xdg-user-dirs-update --force
+# rm -rf ~/.local/share/user-places.xbel
+# rm -rf ~/바탕화면 ~/문서 ~/다운로드 ~/음악 ~/사진 ~/비디오 ~/공개 ~/템플릿 ~/프로젝트
 
 # 환경변수 정의
 sudo tee /etc/environment >/dev/null <<'EOF'
@@ -53,7 +53,7 @@ grep -q 'mitigations=off' /etc/kernel/cmdline || \
   sudo sed -i '1s/$/ rw quiet mitigations=off/' /etc/kernel/cmdline
 
 # chezmoi로 dotfiles 설정
-chezmoi init --apply https://github.com/hanminsik/dotfiles_sway.git
+# chezmoi init --apply https://github.com/hanminsik/dotfiles_sway.git
 
 # 재부팅
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
