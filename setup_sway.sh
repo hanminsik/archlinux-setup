@@ -53,7 +53,7 @@ grep -q 'mitigations=off' /etc/kernel/cmdline || \
   sudo sed -i '1s/$/ rw quiet mitigations=off/' /etc/kernel/cmdline
 
 # chezmoi로 dotfiles 설정
-chezmoi init --apply https://github.com/hanminsik/dotfiles.git
+chezmoi init --apply https://github.com/hanminsik/dotfiles_sway.git
 
 # 재부팅
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
