@@ -25,7 +25,7 @@ git clone https://aur.archlinux.org/yay-bin.git "$tmpdir/yay-bin"
 rm -rf "$tmpdir"
 
 # 필요 AUR 패키지 설치
-yay -S --needed --noconfirm clion clion-jre kdotool
+yay -S --needed --noconfirm clion kdotool
 
 # yay 캐시 정리 (빌드 디렉터리 + 다운로드된 소스)
 yay -Sc --noconfirm
