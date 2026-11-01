@@ -47,7 +47,7 @@ KWIN_WAYLAND_SUPPORT_XX_PIP_V1=1
 EOF
 
 # 필요 서비스 실행
-sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer
+sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd
 
 # mitigation 끄기
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
