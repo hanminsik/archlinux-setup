@@ -25,7 +25,7 @@ git clone https://aur.archlinux.org/yay-bin.git "$tmpdir/yay-bin"
 rm -rf "$tmpdir"
 
 # 필요 AUR 패키지 설치
-yay -S --needed --noconfirm clion clion-jre kdotool qview
+yay -S --needed --noconfirm clion clion-jre kdotool qview cachydpi
 
 # yay 캐시 정리 (빌드 디렉터리 + 다운로드된 소스)
 yay -Sc --noconfirm
@@ -47,7 +47,7 @@ KWIN_WAYLAND_SUPPORT_XX_PIP_V1=1
 EOF
 
 # 필요 서비스 실행
-sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd
+sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd cachydpi.service
 
 # mitigation 끄기
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
