@@ -38,10 +38,6 @@ rm -rf ~/바탕화면 ~/문서 ~/다운로드 ~/음악 ~/사진 ~/비디오 ~/�
 
 # 환경변수 정의
 sudo tee /etc/environment >/dev/null <<'EOF'
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-QT4_IM_MODULE=fcitx
-QT5_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 KWIN_WAYLAND_SUPPORT_XX_PIP_V1=1
 EOF
