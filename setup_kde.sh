@@ -49,6 +49,8 @@ sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd c
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
   sudo sed -i '1s/$/ rw quiet mitigations=off/' /etc/kernel/cmdline
 
+sudo mkinitcpio -P
+
 # chezmoi로 dotfiles 설정
 chezmoi init --apply https://github.com/hanminsik/dotfiles_kde.git
 
