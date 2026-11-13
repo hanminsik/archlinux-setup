@@ -55,7 +55,7 @@ sudo mkinitcpio -P
 chezmoi init --apply https://github.com/hanminsik/dotfiles_kde.git
 
 sudo mkdir -p /etc/keyd
-sudo ln -s "$HOME/.config/keyd/numpad.conf" /etc/keyd/numpad.conf
+sudo ln -s "$HOME/.config/keyd/default.conf" /etc/keyd/default.conf
 sudo keyd reload
 
 # 재부팅
