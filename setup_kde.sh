@@ -58,6 +58,10 @@ sudo mkdir -p /etc/keyd
 sudo ln -s "$HOME/.config/keyd/default.conf" /etc/keyd/default.conf
 sudo keyd reload
 
+sudo mkdir -p /usr/lib/firefox/defaults/pref
+sudo ln -sf "$HOME/.config/mozilla/firefox/config.js" /usr/lib/firefox/config.js
+sudo ln -sf "$HOME/.config/mozilla/firefox/config-prefs.js" /usr/lib/firefox/defaults/pref/config-prefs.js
+
 # 재부팅
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
