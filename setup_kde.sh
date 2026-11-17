@@ -48,6 +48,27 @@ systemctl --user mask plasma-powerdevil.service
 
 sudo mkinitcpio -P
 
+# 1. NetworkManager 즉시 완료 처리
+sudo mkdir -p /etc/systemd/system/NetworkManager.service.d
+sudo tee /etc/systemd/system/NetworkManager.service.d/override.conf > /dev/null << 'EOF'
+[Service]
+Type=simple
+EOF
+
+# 2. plasmalogin 네트워크 대기 및 udevadm 10초 타임아웃 제거
+sudo mkdir -p /etc/systemd/system/plasmalogin.service.d
+sudo tee /etc/systemd/system/plasmalogin.service.d/override.conf > /dev/null << 'EOF'
+[Unit]
+After=
+After=systemd-user-sessions.service
+
+[Service]
+ExecStartPre=
+EOF
+
+# 3. systemd 설정 일괄 반영
+sudo systemctl daemon-reload
+
 chezmoi init --apply https://github.com/hanminsik/dotfiles_kde.git
 
 sudo mkdir -p /etc/keyd
