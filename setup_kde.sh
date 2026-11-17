@@ -40,6 +40,8 @@ grep -q 'mitigations=off' /etc/kernel/cmdline || \
 
 sudo sed -i 's/$/ cpufreq.default_governor=performance/' /etc/kernel/cmdline
 
+sudo sed -i 's/$/ 8250.nr_uarts=0/' /etc/kernel/cmdline
+
 sudo efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux Zen" --loader '\EFI\Linux\arch-linux-zen.efi' --unicode
 sudo bootctl remove
 
