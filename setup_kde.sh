@@ -49,7 +49,6 @@ sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd c
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
   sudo sed -i '1s/$/ rw quiet mitigations=off/' /etc/kernel/cmdline
 
-echo "governor='performance'" | sudo tee /etc/default/cpupower
 sudo sed -i 's/$/ cpufreq.default_governor=performance/' /etc/kernel/cmdline
 
 sudo mkinitcpio -P
