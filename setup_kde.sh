@@ -111,6 +111,8 @@ kwriteconfig6 --file kwalletrc --group Wallet --key Enabled false
 killall kwalletd6 kwalletd5 2>/dev/null || true
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] kwallet 비활성화 ${GREEN}완료${NC}\n"
 
+echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] ${GREEN}===== 설정 완료 =====${NC}\n"
+
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
   sudo systemctl reboot
