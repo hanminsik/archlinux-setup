@@ -40,6 +40,9 @@ grep -q 'mitigations=off' /etc/kernel/cmdline || \
 
 sudo sed -i 's/$/ cpufreq.default_governor=performance/' /etc/kernel/cmdline
 
+sudo efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux Zen" --loader '\EFI\Linux\arch-linux-zen.efi' --unicode
+sudo bootctl remove
+
 sudo mkinitcpio -P
 
 chezmoi init --apply https://github.com/hanminsik/dotfiles_kde.git
@@ -50,9 +53,6 @@ sudo keyd reload
 
 kwriteconfig6 --file kwalletrc --group Wallet --key Enabled false
 killall kwalletd6 kwalletd5 2>/dev/null
-
-sudo efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux Zen" --loader '\EFI\Linux\arch-linux-zen.efi' --unicode
-sudo bootctl remove
 
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
