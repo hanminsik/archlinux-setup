@@ -60,6 +60,8 @@ sudo mkdir -p /etc/keyd
 sudo ln -s "$HOME/.config/keyd/default.conf" /etc/keyd/default.conf
 sudo keyd reload
 
+kwriteconfig6 --file kwalletrc --group Wallet --key Enabled false
+
 # 재부팅
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
