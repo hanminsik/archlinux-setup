@@ -44,6 +44,7 @@ sudo efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux Zen" -
 sudo bootctl remove
 
 sudo systemctl disable NetworkManager-wait-online.service
+systemctl --user mask plasma-powerdevil.service
 
 sudo mkinitcpio -P
 
