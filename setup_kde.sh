@@ -45,6 +45,11 @@ EOF
 # 필요 서비스 실행
 sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd cachydpi.service cronie.service cpupower.service
 
+systemctl --user stop plasma-powerdevil.service
+systemctl --user mask plasma-powerdevil.service
+sudo systemctl disable --now power-profiles-daemon.service
+sudo systemctl mask power-profiles-daemon.service
+
 # mitigation 끄기
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
   sudo sed -i '1s/$/ rw quiet mitigations=off/' /etc/kernel/cmdline
