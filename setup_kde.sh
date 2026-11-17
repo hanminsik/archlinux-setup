@@ -133,8 +133,29 @@ echo "\n"
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 구형 시리얼 포트 드라이버 비활성화 ${GREEN}완료${NC}"
 echo "\n"
 
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 아치 리눅스(zen)를 메인보드 UEFI 부팅 목록에 직접 등록 시작"
+echo "\n"
+
 sudo efibootmgr --create --disk /dev/nvme0n1 --part 1 --label "Arch Linux Zen" --loader '\EFI\Linux\arch-linux-zen.efi' --unicode
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 아치 리눅스(zen)를 메인보드 UEFI 부팅 목록에 직접 등록 ${GREEN}완료${NC}"
+echo "\n"
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 기존 systemd-boot 부트로더 제거 시작"
+echo "\n"
+
 sudo bootctl remove
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 기존 systemd-boot 부트로더 제거 ${GREEN}완료${NC}"
+echo "\n"
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 부팅 속도 최적화 시작"
+echo "\n"
 
 sudo systemctl disable NetworkManager-wait-online.service
 systemctl --user mask plasma-powerdevil.service
@@ -171,17 +192,42 @@ After=systemd-user-sessions.service
 ExecStartPre=
 EOF
 
-# 3. systemd 설정 일괄 반영
-sudo systemctl daemon-reload
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] 부팅 속도 최적화 ${GREEN}완료${NC}"
+echo "\n"
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] chezmoi 설정 파일 다운로드 시작"
+echo "\n"
 
 chezmoi init --apply https://github.com/hanminsik/dotfiles_kde.git
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] chezmoi 설정 파일 다운로드 ${GREEN}완료${NC}"
+echo "\n"
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] home의 keyd conf를 /etc/keyd/에 심볼릭 링크 걸기 시작"
+echo "\n"
 
 sudo mkdir -p /etc/keyd
 sudo ln -s "$HOME/.config/keyd/default.conf" /etc/keyd/default.conf
 sudo keyd reload
 
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] home의 keyd conf를 /etc/keyd/에 심볼릭 링크 걸기 ${GREEN}완료${NC}"
+echo "\n"
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] kwallet 비활성화 시작"
+echo "\n"
+
 kwriteconfig6 --file kwalletrc --group Wallet --key Enabled false
-killall kwalletd6 kwalletd5 2>/dev/null
+killall kwalletd6 kwalletd5
+
+echo "\n"
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] kwallet 비활성화 ${GREEN}완료${NC}"
+echo "\n"
 
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
