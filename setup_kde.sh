@@ -47,6 +47,16 @@ sudo systemctl disable NetworkManager-wait-online.service
 systemctl --user mask plasma-powerdevil.service
 sudo systemctl mask systemd-udev-settle.service
 
+sudo sed -i -E '/^HOOKS=/ {
+    s/\budev\b/systemd/g
+    s/\b(keymap|consolefont)\b/sd-vconsole/g
+    s/\b(usr|resume)\b//g
+    s/sd-vconsole[[:space:]]+sd-vconsole/sd-vconsole/g
+    s/[[:space:]]+/ /g
+    s/\([[:space:]]+/(/g
+    s/[[:space:]]+\)/)/g
+}' /etc/mkinitcpio.conf
+
 sudo mkinitcpio -P
 
 # 1. NetworkManager 즉시 완료 처리
