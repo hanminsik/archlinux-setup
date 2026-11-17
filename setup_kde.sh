@@ -42,8 +42,10 @@ XMODIFIERS=@im=fcitx
 KWIN_WAYLAND_SUPPORT_XX_PIP_V1=1
 EOF
 
+sudo sed -i "s/^#\?governor=.*/governor='performance'/" /etc/default/cpupower
+
 # 필요 서비스 실행
-sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd cachydpi.service cronie.service
+sudo systemctl enable --now paccache.timer bluetooth.service fstrim.timer keyd cachydpi.service cronie.service cpupower.service
 
 # mitigation 끄기
 grep -q 'mitigations=off' /etc/kernel/cmdline || \
