@@ -45,6 +45,7 @@ sudo bootctl remove
 
 sudo systemctl disable NetworkManager-wait-online.service
 systemctl --user mask plasma-powerdevil.service
+sudo systemctl mask systemd-udev-settle.service
 
 sudo mkinitcpio -P
 
