@@ -76,16 +76,6 @@ sudo systemctl disable NetworkManager-wait-online.service
 systemctl --user mask plasma-powerdevil.service 2>/dev/null || true
 sudo systemctl mask systemd-udev-settle.service serial-getty@ttyS0.service
 
-sudo sed -i -E '/^HOOKS=/ {
-    s/\budev\b/systemd/g
-    s/\b(keymap|consolefont)\b/sd-vconsole/g
-    s/\b(usr|resume)\b//g
-    s/sd-vconsole[[:space:]]+sd-vconsole/sd-vconsole/g
-    s/[[:space:]]+/ /g
-    s/\([[:space:]]+/(/g
-    s/[[:space:]]+\)/)/g
-}' /etc/mkinitcpio.conf
-
 sudo mkinitcpio -P
 
 sudo mkdir -p /etc/systemd/system/NetworkManager.service.d
