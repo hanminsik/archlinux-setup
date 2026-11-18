@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+
 [[ $EUID -ne 0 ]] || { echo "root가 아닌 일반 유저로 실행하세요"; exit 1; }
+
+
 
 sudo -v
 while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
+
+
 
 GREEN='\033[0;32m'
 NC='\033[0m'
@@ -288,11 +294,15 @@ echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] kwallet 비활성화 ${GREEN}완료${N
 echo -e "${GREEN}#########################################################${NC}\n"
 echo -e "${GREEN}#########################################################${NC}\n"
 
+
+
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] ${GREEN}설정 완료${NC}\n"
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] ${GREEN}설정 완료${NC}\n"
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] ${GREEN}설정 완료${NC}\n"
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] ${GREEN}설정 완료${NC}\n"
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] ${GREEN}설정 완료${NC}\n"
+
+
 
 read -rp "설정 완료. 지금 재부팅할까요? [y/N] " ans
 if [[ "$ans" =~ ^[Yy]$ ]]; then
