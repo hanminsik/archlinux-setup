@@ -56,7 +56,7 @@ echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] 필요 서비스 시작 ${GREEN}완료
 
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] 커널 파라미터 최적화 설정\n"
 # 중복 추가 방지 처리
-for param in "mitigations=off" "cpufreq.default_governor=performance" "8250.nr_uarts=0"; do
+for param in "mitigations=off" "cpufreq.default_governor=performance"; do
   if ! grep -q "$param" /etc/kernel/cmdline; then
     sudo sed -i "s/$/ $param/" /etc/kernel/cmdline
   fi
