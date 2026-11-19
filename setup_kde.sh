@@ -184,6 +184,8 @@ for param in "mitigations=off" "cpufreq.default_governor=performance"; do
   fi
 done
 
+systemctl --user mask plasma-powerdevil.service 2>/dev/null || true
+
 echo -e "${GREEN}#########################################################${NC}\n"
 echo -e "${GREEN}#########################################################${NC}\n"
 echo -e "\n[$(date '+%Y-%m-%d %H:%M:%S')] 커널 파라미터 최적화 ${GREEN}완료${NC}\n"
@@ -237,7 +239,6 @@ echo -e "${GREEN}#########################################################${NC}\
 echo -e "${GREEN}#########################################################${NC}\n"
 
 sudo systemctl disable NetworkManager-wait-online.service
-systemctl --user mask plasma-powerdevil.service 2>/dev/null || true
 sudo systemctl mask systemd-udev-settle.service serial-getty@ttyS0.service
 
 sudo mkinitcpio -P
